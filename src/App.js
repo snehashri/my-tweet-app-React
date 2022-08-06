@@ -1,23 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import HomePage from './Components/Registration/HomePage';
+//import GetMyTweetsPage from './Components/GetMyTweetsPage';
+import Dashboard from './Components/SideMenubar/Dashboard';
+import Sidebar from '../src/Components/SideMenubar/Sidebar';
+import Feed from '../src/Components/Dashboard/Feed'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      
+      <Sidebar/>
+      <Feed />
     </div>
   );
 }
