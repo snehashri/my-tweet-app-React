@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 
 
-import MyTweetList from '../MyTweetList';
+import MyTweetList from '../Dashboard/MyTweetList';
 
 
 function GetMyTweetsPage() {
     const [tweets, setMytweets] = useState([]);
+    var State=true;
+    var token=localStorage.getItem('token');
 
     async function fetchMytweetsHandler() {
-    fetch('https://localhost:44359/api/Tweet/GetAllTweetsofUser')
+    fetch('https://localhost:44359/api/Tweet/GetAllTweetsofUser',{
+      method: 'GET',     
+      headers: {
+        Authorization:`Bearer ${token}`,
+    }} )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         console.log(data.data);
-        const transformedMyTweets = data.data.map((tweetData,index) => {
+        const transformedMyTweets = data.Data.map((tweetData,index) => {
           return { 
-            key:index,    
-            Email: tweetData.email,
-            AddedDate: tweetData.addedDate,
-            Message: tweetData.message,
+            key:index, 
+            tweetId:tweetData.Id,   
+            Email: tweetData.Email,
+            AddedDate: tweetData.AddedDate,
+            Message: tweetData.Message,
+            DeleteState:true
           };
         });
         setMytweets(transformedMyTweets);
@@ -32,11 +40,12 @@ function GetMyTweetsPage() {
       
   return (
     <React.Fragment>
+      
       <section>        
       <button onClick={fetchMytweetsHandler}>Get My tweets</button>      
       </section>
       <section>
-        <MyTweetList Tweets={tweets} />
+        <MyTweetList tweet={tweets}  />
       </section>
       
       

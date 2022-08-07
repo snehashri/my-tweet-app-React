@@ -5,41 +5,17 @@ import Post from './Post'
 //import db from './firebase'
 import FlipMove from 'react-flip-move'
 import PostTweetForm from './PostTweetForm'
+import MyTweetList from './MyTweetList'
 
 function Feed() {
     var token=localStorage.getItem('token');
     const [posts, setPosts] = useState([
-  {
-        key : 1,
-                displayName : "name",
-                username : "username",
-                verified :true,
-                text : "text",
-                image : "/path",
-                avatar : "avtar"
-  },
-  {
-    key : 2,
-            displayName : "name",
-            username : "username",
-            verified :true,
-            text : "text",
-            image : "/path",
-            avatar : "avtar"
-},{
-    key : 3,
-            displayName : "name",
-            username : "username",
-            verified :true,
-            text : "text",
-            image : "/path",
-            avatar : "avtar"
-}
+  
     ]);
     const [tweets, setMytweets] = useState([]);
 
     async function fetchMytweetsHandler() {
-    fetch('https://localhost:44359/api/Tweet/GetAllTweetsofUser',{
+    fetch('https://localhost:44359/api/Tweet/GetAllTweets',{
     method: 'GET',     
       headers: {
         Authorization:`Bearer ${token}`,
@@ -49,13 +25,14 @@ function Feed() {
         return response.json();
       })
       .then((data) => {
-        console.log(data.data);
+        console.log(data.Data);
         const transformedMyTweets = data.Data.map((tweetData,index) => {
           return { 
             key:index,    
-            Email: tweetData.email,
-            AddedDate: tweetData.addedDate,
-            Message: tweetData.message,
+            Email: tweetData.Email,
+            AddedDate: tweetData.AddedDate,
+            Message: tweetData.Message,
+            DeleteState:false
           };
         });
         setMytweets(transformedMyTweets);
@@ -76,22 +53,10 @@ function Feed() {
             </div>
 
             {/* <TweetBox /> */}
-            {/* <PostTweetForm></PostTweetForm> */}
+            <PostTweetForm></PostTweetForm> 
+            <MyTweetList tweet={tweets}></MyTweetList>
 
-            <FlipMove>
-                {tweets.map(post => (
             
-                <Post 
-
-                key = {post.text}
-                Email = {post.Email}
-                message = {post.message}
-                AddedDate = {post.AddedDate}
-                
-            />
-          
-            ))}
-           </FlipMove>
         </div>
     )
 }

@@ -1,20 +1,29 @@
 import React from 'react';
 
 import Tweet from './Tweet';
+import Post from './Post'
+//import db from './firebase'
+import FlipMove from 'react-flip-move'
 
 
 function MyTweetList (props) {
   return (
-    <ul>
-      {props.Tweets.map((tweet) => (
-        <Tweet
-          key={tweet.key}
-          Email={tweet.Email}
-          AddedDate={tweet.AddedDate}
-          Message={tweet.Message}
-        />
-      ))}
-    </ul>
+    <FlipMove>
+                {props.tweet.map(post => (
+            
+                <Post 
+                
+                key = {post.key}
+                Email = {post.Email}
+                tweetId={post.tweetId}
+                message = {post.Message}
+                AddedDate = {post.AddedDate}
+                DeleteState={post.DeleteState}
+                
+            />
+          
+            ))}
+           </FlipMove>
   );
 }
 

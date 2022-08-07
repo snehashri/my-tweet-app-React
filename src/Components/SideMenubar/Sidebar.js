@@ -15,46 +15,23 @@ import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
    var navigate=useNavigate();
+   function backHandler()
+  {
+    navigate('/',{replace: true});
+  }
+  
     return (
         <div className = "sidebar">
            <TwitterIcon
               className = "sidebar__twitterIcon"                
            /> 
 
-           <SidebarOption active
-              Icon = {HomeIcon}
-              text = "Home"
-             
-           />
-           <SidebarOption 
-              Icon = {SearchIcon}
-              text = "Explore"  
-           />
-           <SidebarOption 
-              Icon = {NotificationsNoneIcon}
-              text = "Notifications"  
-           />
-           <SidebarOption 
-              Icon = {MailOutlineIcon}
-              text = "Message"  
-           />
-           <SidebarOption 
-              Icon = {BookmarkBorderIcon}
-              text = "Bookmarks"  
-           />
-           <SidebarOption
-              Icon = {ListAltIcon} 
-              text = "Lists"  
-           />
-           <SidebarOption 
-              Icon = {PermIdentityIcon}
-              text = "Profile"  
-           />
-           <SidebarOption 
-              Icon = {MoreHorizIcon}
-              text = "More"  
-           />
-           <Button variant = "outlined" className = "sidebar__tweet">Tweet</Button>
+      <SidebarOption active Icon={HomeIcon} text="Home" navigate="/homepage"/>
+      <SidebarOption Icon={SearchIcon} text="Get My Tweets"  navigate="/getmytweetspage"/>
+      <SidebarOption Icon={NotificationsNoneIcon} text="Get All Users" navigate="/getmytweets"/>
+      <SidebarOption Icon={MailOutlineIcon} text="Search by username" navigate="/getmytweets" />
+           <Button variant = "outlined" className = "sidebar__tweet" onClick={backHandler}>Logout</Button>
+
         </div>
     )
 }

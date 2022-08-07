@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route,NavLink } from "react-router-dom
 import Dashboard from './Components/SideMenubar/Dashboard';
 import RegisterForm from './Components/Registration/RegisterForm';
 import ForgetPasswordForm from './Components/Registration/ForgetPasswordForm';
+import GetMyTweetsPage from './Components/Dashboard/GetMyTweetsPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
              <Route path="/registerform" element={<RegisterForm/>} >register</Route>
              <Route path="/forgetpasswordform" element={<ForgetPasswordForm/>} >Login</Route>
              <Route path="/" element={<Dashboard/>} >Homepage</Route>
+             <Route path="/getmytweetspage" element={<GetMyTweetsPage/>} >Homepage</Route>
              
           
             </Routes>

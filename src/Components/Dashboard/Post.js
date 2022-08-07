@@ -6,6 +6,7 @@ import RepeatIcon from '@material-ui/icons/Repeat'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import React, {forwardRef} from 'react'
 import '../CSS/Post.css'
+import DeleteTweet from '../Dashboard/DeleteTweet'
 
 const  Post = forwardRef(
     ({
@@ -14,7 +15,13 @@ const  Post = forwardRef(
         verified, 
         text, 
         image, 
-        avatar
+        avatar,
+        key,
+        message,
+        Email,
+        AddedDate,
+        DeleteState,
+        tweetId
 }, ref) => {
     return (
         <div className = "post" ref={ref}>
@@ -27,15 +34,15 @@ const  Post = forwardRef(
                 <div className = "post__header">
                     <div className = "post__headerText">
                     <h3>
-                        {displayName}
+                        {username}
                             <span className = "post__headerSpecial">
                                 {verified && <VerifiedUserIcon className = "post__badge" />}
-                                @{username}
+                                @{Email}
                             </span>
                     </h3>
                     </div>
                     <div className = "post__headerDescription">
-                        <p>{text}</p>
+                        <p>{message}</p>
                     </div>
                 </div>
                 <img 
@@ -47,6 +54,7 @@ const  Post = forwardRef(
                     <RepeatIcon fontSize = "small" />
                     <FavoriteBorderIcon fontSize = "small" />
                     <PublishIcon  fontSize = "small" /> 
+                    <DeleteTweet tweetId={tweetId} state={DeleteState}/>
                 </div>
             </div>    
         </div>
