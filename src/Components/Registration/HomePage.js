@@ -4,9 +4,33 @@ import ForgetPasswordForm from './ForgetPasswordForm';
 import Login from './Login';
 import PostTweetPage from '../Dashboard/PostTweetPage';
 import RegisterForm from './RegisterForm';
+import Sidebar from '../SideMenubar/Sidebar';
+import Feed from '../Dashboard/Feed';
 
 function HomePage() {
-    const [enteredpagestate, setEnteredPageState] = useState('');
+
+
+return(
+  <div className='app'>
+  <Sidebar/>
+  <Feed/>
+  </div>
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* const [enteredpagestate, setEnteredPageState] = useState('');
     const [closepagestate, setclosePageState] = useState('');
     const [tokenstate, settokenState] = useState('');
     const loginChangeHandler = () => {
@@ -94,7 +118,7 @@ function HomePage() {
       </section>
       
     </React.Fragment>
-  );
+  );*/
 }
 
 export default HomePage;

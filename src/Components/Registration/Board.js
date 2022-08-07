@@ -4,19 +4,19 @@ import { useNavigate } from "react-router-dom";
 function Board(props) {
     const navigate=useNavigate();
   // get the user data from the session storage
-  const user = sessionStorage.getItem('user');
-  const token = sessionStorage.getItem('token');
+  const user = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
   
   
   
   // handle click event of logout button
   const handleLogout = () => {
     // remove the token and user from the session storage
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/login',{replace: true});
   }
-  if(token === null)
+  if(token === 'null')
   {
     return navigate('/login',{replace: true});
   }

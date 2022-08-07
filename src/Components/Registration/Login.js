@@ -5,7 +5,7 @@ import '../CSS/Login.css';
 
 function Login(props) {
   const navigate=useNavigate();
-  const token = sessionStorage.getItem('token');
+  
 
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPass, setEnteredPass] = useState('');
@@ -40,22 +40,33 @@ function Login(props) {
       }
     });
     const data = await response.json();
-    console.log(data);
-    sessionStorage.setItem('token', data.Data);
-    sessionStorage.setItem('user', loginuserdata);
-    if(token === null)
+    console.log(data.Data);
+    console.log("beforeset: ",sessionStorage.getItem('token'));
+    localStorage.setItem('token', data.Data);
+    localStorage.setItem('user', loginuserdata);
+    console.log("afterset: ",localStorage.getItem('token'));
+    var mytoken=localStorage.getItem('token');
+   console.log(typeof(mytoken));
+    if(localStorage.getItem('token') === 'null')
     {
-      navigate('/login',{replace: true});
+       navigate('/login',{replace: true});
+       //console.log("failed");
+      
     }
     else
     {
-      navigate('/board',{replace: true});
+      console.log("go to homepage")
+      navigate('/homepage',{replace: true});
     }
     
     
   }
 
-
+  function backHandler()
+  {
+    navigate('/',{replace: true});
+  }
+  
 
   return (
     <div className="login-wrapper">
@@ -71,6 +82,9 @@ function Login(props) {
         </div>
      <div>
       <button>Login</button>
+      </div>
+      <div>
+      <button onClick={backHandler}>Back</button>
       </div>
     </form>
     </div>

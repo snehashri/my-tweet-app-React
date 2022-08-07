@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 
 function RegisterForm(props) {
+  const navigate=useNavigate();
   
     const [enteredFname, setEnteredFname] = useState('');
     const [enteredLname, setEnteredLname] = useState('');
@@ -47,10 +48,29 @@ function RegisterForm(props) {
     Email:enteredEmail,
     password:enteredPass
     };
-    props.onRegister(registeredUserData);
+    userRegistrationHandler(registeredUserData);
+    
     console.log(registeredUserData);
     
   };
+
+  async function userRegistrationHandler(registereduserdata) {
+    const response = await fetch('https://localhost:44359/api/Auth/Register', {
+      method: 'POST',
+      body: JSON.stringify(registereduserdata),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    
+    console.log(data);
+  }
+
+  function backHandler()
+{
+  navigate('/',{replace: true});
+}
 
   return (
     <form onSubmit={submitHandler}>
@@ -86,6 +106,9 @@ function RegisterForm(props) {
       </div>
      
       <button>Register</button>
+      <div>
+      <button onClick={backHandler}>Back</button>
+      </div>
     </form>
   );
 }

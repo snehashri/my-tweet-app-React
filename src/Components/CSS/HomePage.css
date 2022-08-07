@@ -1,0 +1,9 @@
+.app {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    max-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+  }

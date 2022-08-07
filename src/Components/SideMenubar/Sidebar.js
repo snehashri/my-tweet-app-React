@@ -11,8 +11,10 @@ import ListAltIcon from '@material-ui/icons/ListAlt'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import { Button } from '@material-ui/core'
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+   var navigate=useNavigate();
     return (
         <div className = "sidebar">
            <TwitterIcon
@@ -21,7 +23,8 @@ function Sidebar() {
 
            <SidebarOption active
               Icon = {HomeIcon}
-              text = "Home"  
+              text = "Home"
+             
            />
            <SidebarOption 
               Icon = {SearchIcon}

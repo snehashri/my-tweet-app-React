@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 
 function ForgetPasswordForm(props) {
+  const navigate=useNavigate();
   
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPass, setEnteredPass] = useState('');
@@ -26,9 +27,26 @@ function ForgetPasswordForm(props) {
      DOB:enteredDOB,
      Newpassword:enteredPass
     };
-    props.onLogin(forgotpasswordData);
+    forgotPasswordHandler(forgotpasswordData);
     console.log(forgotpasswordData);
   };
+
+  async function forgotPasswordHandler(forgotpasswordData) {
+    const response = await fetch('https://localhost:44359/api/Auth/ForgotPassword', {
+      method: 'POST',
+      body: JSON.stringify(forgotpasswordData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
+function backHandler()
+{
+  navigate('/',{replace: true});
+}
 
   return (
     <form onSubmit={submitHandler}>
@@ -46,6 +64,9 @@ function ForgetPasswordForm(props) {
       </div>
      
       <button>Forgot Password</button>
+      <div>
+      <button onClick={backHandler}>Back</button>
+      </div>
     </form>
   );
 }
