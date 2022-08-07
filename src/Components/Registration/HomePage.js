@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ForgetPasswordForm from './ForgetPasswordForm';
 
-import LoginForm from './LoginForm';
+import Login from './Login';
 import PostTweetPage from '../Dashboard/PostTweetPage';
 import RegisterForm from './RegisterForm';
 
@@ -69,7 +69,7 @@ function HomePage() {
         {closepagestate === '' &&
       <button onClick={loginChangeHandler} >Login</button>}
       {enteredpagestate === 'login' && (
-        <LoginForm onLogin={userloginHandler} onBack={onBackHandler} />
+        <Login onLogin={userloginHandler} onBack={onBackHandler} />
       )}
         
       </section>

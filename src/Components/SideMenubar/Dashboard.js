@@ -10,7 +10,7 @@ import PostTweetForm from "../Dashboard/PostTweetForm";
 import Sidebar from "./Sidebar";
 
 
- function Dashboard() {
+ function Dashboard(props) {
   return (
     <div className="App">
       <Router>
