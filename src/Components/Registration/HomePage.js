@@ -1,36 +1,31 @@
-import React, { useState } from 'react';
-import ForgetPasswordForm from './ForgetPasswordForm';
+import React, { useState } from "react";
+import ForgetPasswordForm from "./ForgetPasswordForm";
 
-import Login from './Login';
-import PostTweetPage from '../Dashboard/PostTweetPage';
-import RegisterForm from './RegisterForm';
-import Sidebar from '../SideMenubar/Sidebar';
-import Feed from '../Dashboard/Feed';
+import Login from "./Login";
+import PostTweetPage from "../Dashboard/PostTweetPage";
+import RegisterForm from "./RegisterForm";
+import Sidebar from "../SideMenubar/Sidebar";
+import Feed from "../Dashboard/Feed";
+import GetMyTweetsPage from "../Dashboard/GetMyTweetsPage";
+import GetAllUserPage from "../Dashboard/GetAllUserPage";
 
 function HomePage() {
+  const [nav, setNav] = useState("");
 
+  function changeNav(show) {
+    setNav(show);
+  }
+  return (
+    <div className="app">
+      <Sidebar changeNav={changeNav} />
+      {(nav == "" || nav == "Home") && <Feed />}
+      {nav == "Get My Tweets" && <GetMyTweetsPage />}
+      {nav == "Get All Users" && <GetAllUserPage />}
+      {nav == "Search by username" && <GetMyTweetsPage />}
+    </div>
+  );
 
-return(
-  <div className='app'>
-  <Sidebar/>
-  <Feed/>
-  </div>
-);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /* const [enteredpagestate, setEnteredPageState] = useState('');
+  /* const [enteredpagestate, setEnteredPageState] = useState('');
     const [closepagestate, setclosePageState] = useState('');
     const [tokenstate, settokenState] = useState('');
     const loginChangeHandler = () => {

@@ -12,33 +12,16 @@ import "../CSS/Post.css";
 import DeleteTweet from "../Dashboard/DeleteTweet";
 import LikeTweet from "../Dashboard/LikeTweet";
 import ReplyTweet from "../Dashboard/ReplyTweet";
-import EditTweet from "../Dashboard/EditTweet";
 
-
-const Post = forwardRef(
+const Reply = forwardRef(
   (
-    {
-      displayName,
-      username,
-      verified,
-      text,
-      image,
-      avatar,
-      key,
-      message,
-      Email,
-      AddedDate,
-      DeleteState,
-      tweetId,
-      Likes,
-      TweetReplies,
-    },
+    { username, verified, avatar, key, message, Email, AddedDate, tweetId },
     ref
   ) => {
     return (
       <div className="post" ref={ref}>
         <div className="post__avatar">
-          <Avatar src={avatar} />
+          <Avatar />
         </div>
         <div className="post__body">
           <div className="post__header">
@@ -55,24 +38,10 @@ const Post = forwardRef(
               <p>{message}</p>
             </div>
           </div>
-
-          <div className="post__footer">
-            <div className="column">
-              <LikeTweet tweetId={tweetId} Likes={Likes}></LikeTweet>
-            </div>
-            <ReplyTweet
-              TweetReplies={TweetReplies}
-              tweetId={tweetId}
-            ></ReplyTweet>
-
-            <DeleteTweet tweetId={tweetId} state={DeleteState} />
-            <EditTweet tweetId={tweetId} state={DeleteState} />
-           
-          </div>
         </div>
       </div>
     );
   }
 );
 
-export default Post;
+export default Reply;

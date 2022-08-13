@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import '../CSS/Registerform.css';
 
 
 function ForgetPasswordForm(props) {
@@ -49,25 +50,35 @@ function backHandler()
 }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div >
-        <label htmlFor='email'>Email</label>
-        <input type='email' id='email'  onChange={emailChangeHandler} />
+    <div className="auth-wrapper">
+    <div className="auth-inner">
+    <form>
+    <h3>Forget password</h3>
+      <div className="mb-3">
+        <label>Email</label>
+        <input className="form-control" type='email' id='email'  onChange={emailChangeHandler} />
       </div>
-      <div >
-        <label htmlFor='dob'>Date of Birth</label>
-        <input type='date'  onChange={DOBChangeHandler} ></input>
+      <div className="mb-3" >
+        <label>Date of Birth</label>
+        <input className="form-control" type='date'  onChange={DOBChangeHandler} ></input>
       </div>
-      <div >
-        <label htmlFor='password'>New Password</label>
-        <input type='password' id='password' onChange={passChangeHandler} ></input>
+      <div className="mb-3">
+        <label>New Password</label>
+        <input className="form-control" type='password' id='password' onChange={passChangeHandler} ></input>
       </div>
+      <div className="d-grid">
+          <button type="submit" className="btn btn-primary" onClick={submitHandler}>
+            Submit
+          </button>
+      </div>
+      <p className="forgot-password text-right">
+         <a href="/sign-in"> Sign In Now</a>
+      </p>
      
-      <button>Forgot Password</button>
-      <div>
-      <button onClick={backHandler}>Back</button>
-      </div>
+      
     </form>
+    </div>
+    </div>
   );
 }
 

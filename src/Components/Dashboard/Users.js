@@ -4,34 +4,23 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import RepeatIcon from "@material-ui/icons/Repeat";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import IconButton from "@material-ui/core/IconButton";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef } from "react";
 import "../CSS/Post.css";
 import DeleteTweet from "../Dashboard/DeleteTweet";
-import LikeTweet from "../Dashboard/LikeTweet";
-import ReplyTweet from "../Dashboard/ReplyTweet";
-import EditTweet from "../Dashboard/EditTweet";
 
-
-const Post = forwardRef(
+const Users = forwardRef(
   (
     {
-      displayName,
       username,
       verified,
-      text,
+      FirstName,
       image,
       avatar,
       key,
       message,
       Email,
-      AddedDate,
       DeleteState,
       tweetId,
-      Likes,
-      TweetReplies,
     },
     ref
   ) => {
@@ -52,27 +41,14 @@ const Post = forwardRef(
               </h3>
             </div>
             <div className="post__headerDescription">
-              <p>{message}</p>
+              <p>{FirstName}</p>
             </div>
           </div>
-
-          <div className="post__footer">
-            <div className="column">
-              <LikeTweet tweetId={tweetId} Likes={Likes}></LikeTweet>
-            </div>
-            <ReplyTweet
-              TweetReplies={TweetReplies}
-              tweetId={tweetId}
-            ></ReplyTweet>
-
-            <DeleteTweet tweetId={tweetId} state={DeleteState} />
-            <EditTweet tweetId={tweetId} state={DeleteState} />
-           
-          </div>
+          <img src={image} alt="" />
         </div>
       </div>
     );
   }
 );
 
-export default Post;
+export default Users;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+ import '../CSS/Registerform.css';
 
 
 function RegisterForm(props) {
@@ -73,43 +74,69 @@ function RegisterForm(props) {
 }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div >
-        <label htmlFor='fname'>First Name</label>
-        <input type='text' id='fname'  onChange={firstnameChangeHandler} />
+    <div className="App">
+    <div className="auth-wrapper">
+    <div className="auth-inner">
+    <form>
+        <h3>Sign Up</h3>
+        <div className="mb-3">
+          <label>First name</label>
+          <input
+          onChange={firstnameChangeHandler}
+            type="text"
+            className="form-control"
+            placeholder="First name"
+          />
+        </div>
+        <div className="mb-3">
+          <label>Last name</label>
+          <input type="text" className="form-control" placeholder="Last name" onChange={lastnameChangeHandler} />
+        </div>
+        <div className="mb-3" onChange={genderChangeHandler}>
+        <label>Gender</label><br></br>
+        <input type="radio"  id="male" name="gender" value="male" />
+        <label for="male">Male</label>&nbsp;&nbsp;
+        <input type="radio"  id="female" name="gender" value="female" />
+        <label for="female">Female</label><br></br>
+       </div>
+        <div className="mb-3">
+          <label>Date of Birth</label>
+          <input type="date" className="form-control"  onChange={DOBChangeHandler} />
+        </div>
+        <div className="mb-3">
+          <label>Phone Number</label>
+          <input type="text" pattern="^[0-9]{10}$" placeholder="Phone number" minLength={10} maxLength={10} className="form-control"  onChange={DOBChangeHandler} />
+        </div>
+        <div className="mb-3">
+          <label>Email address</label>
+          <input
+          onChange={emailChangeHandler}
+            type="email"
+            className="form-control"
+            placeholder="Enter email"
+          />
+        </div>
+        <div className="mb-3">
+          <label>Password</label>
+          <input
+          onChange={passChangeHandler}
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+          />
+        </div>
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          Already registered <a href="/sign-in">sign in?</a>
+        </p>
+      </form>
       </div>
-      <div >
-        <label htmlFor='lname'>Last Name</label>
-        <input type='text' id='lname'  onChange={lastnameChangeHandler} />
       </div>
-      <div onChange={genderChangeHandler}>
-      <input type="radio" id="male" name="male" value="male" />
-      <label for="male">Male</label><br></br>
-      <input type="radio" id="female" name="female" value="female" />
-      <label for="female">Female</label><br></br>
       </div>
-      <div >
-        <label htmlFor='dob'>Date of Birth</label>
-        <input type='date'  onChange={DOBChangeHandler} ></input>
-      </div>
-      <div >
-        <label htmlFor='phone'>Phone Number</label>
-        <input type='number'  onChange={phoneChangeHandler} ></input>
-      </div>
-      <div >
-        <label htmlFor='email'>Email</label>
-        <input type='email' id='email'  onChange={emailChangeHandler} />
-      </div>
-      <div >
-        <label htmlFor='password'>Password</label>
-        <input type='password' id='password' onChange={passChangeHandler} ></input>
-      </div>
-     
-      <button>Register</button>
-      <div>
-      <button onClick={backHandler}>Back</button>
-      </div>
-    </form>
   );
 }
 
