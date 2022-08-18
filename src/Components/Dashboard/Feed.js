@@ -10,11 +10,14 @@ import UserList from "./UsersList";
 import { getElementError } from "@testing-library/react";
 
 function Feed() {
+  
   var token = localStorage.getItem("token");
   const [toShow, setToShow] = useState("false");
   const [tweets, setMytweets] = useState([]);
   const [users, setUsers] = useState([]);
+  const [profileuser, setProfileUsers] = useState([]);
   const [afterPost, setAfterPost] = useState(false);
+  const [dynamicReply, setDynamicReply] = useState(false);
 
   const [searchUsernameInput, setSearchUsernameInput] = useState("");
   async function fetchMytweetsHandler() {
@@ -28,7 +31,7 @@ function Feed() {
         return response.json();
       })
       .then((data) => {
-        console.log(data.Data);
+        console.log("alltweets ->>>>>>>>>", data.Data);
         const transformedMyTweets = data.Data.map((tweetData, index) => {
           return {
             key: index,
@@ -38,17 +41,24 @@ function Feed() {
             Message: tweetData.Message,
             DeleteState: false,
             Likes: tweetData.Likes,
+            TweetReplies: tweetData.TweetReplies,
+            Imageurl:tweetData.Imageurl,
+            firstname:tweetData.user.FirstName,
+            lastname:tweetData.user.LastName,
+            username:tweetData.user.Username,
+            profileimg:tweetData.user.ProfileImg
           };
         });
 
         setMytweets(transformedMyTweets);
-        console.log("tt", transformedMyTweets[0].Likes.length);
+        console.log("Feeds after ->>>>>>>>>>>", transformedMyTweets);
+        //console.log("tt", transformedMyTweets[0].Likes.length);
       });
   }
 
   async function fetchUsersHandler() {
     fetch(
-      `https://localhost:44359/api/Auth/SearchByUsername/${searchUsernameInput}`,
+      `https://localhost:44359/api/Tweet/GetTweets/${searchUsernameInput}`,
       {
         method: "GET",
         headers: {
@@ -61,28 +71,43 @@ function Feed() {
       })
       .then((data) => {
         console.log(data.Data);
-        const allUsers = data.Data.map((user, index) => {
+        const Usertweet = data.Data.map((tweetData, index) => {
           return {
             key: index,
-            // firstName: user.firstName,
-            // email: user.Email,
-            email: user.Email,
-            firstName: user.FirstName,
-            lastName: user.LastName,
-            username: user.Username,
+            Email: tweetData.Email,
+            tweetId: tweetData.Id,
+            AddedDate: tweetData.AddedDate,
+            Message: tweetData.Message,
+            Likes: tweetData.Likes,
+            TweetReplies: tweetData.TweetReplies,
+            Imageurl:tweetData.Imageurl,
+            firstname:tweetData.user.FirstName,
+            lastname:tweetData.user.LastName,
+            username:tweetData.user.Username,
+            profileimg:tweetData.user.ProfileImg
           };
         });
-        setUsers(allUsers);
+        setUsers(Usertweet);
+        // console.log("Usertweet[0]",[Usertweet[0]]);
+        setProfileUsers([Usertweet[0]]);
+        
+      })
+      .catch((error) => {
+        console.error(error);
+        setUsers(null);
       });
   }
 
   useEffect(() => {
+    console.log("Feeds before ->>>>>>>>>>>", tweets);
     fetchMytweetsHandler();
-  }, [afterPost]);
+  }, [afterPost, dynamicReply]);
 
-  function onSearchHandler() {
+  function onSearchHandler(e) {
+    e.preventDefault();
     setToShow("true");
     fetchUsersHandler();
+    document.getElementById("searchForm").reset();
   }
   function searchUsername(event) {
     setSearchUsernameInput(event.target.value);
@@ -97,25 +122,50 @@ function Feed() {
   function afterPostHandle() {
     setAfterPost((s) => !s);
   }
+
+  function dynamicLoadReply() {
+    setDynamicReply((s) => !s);
+  }
   return (
     <div className="feed">
       <div className="feed__header">
-        <h2>Home</h2>
+       
+
         <div className="search_bar">
-          <input id="search_username" onInput={searchUsername}></input>
-          <button onClick={onSearchHandler}>Search</button>
+          <form id="searchForm">
+            <input
+              id="search_username"
+              className="search_username"
+              onInput={searchUsername}
+              placeholder="Search "
+            ></input>
+            <button onClick={onSearchHandler} className="small">
+              Search
+            </button>
+          </form>
         </div>
       </div>
 
       {toShow == "false" ? (
         <div>
           <PostTweetForm afterPost={afterPostHandle}></PostTweetForm>
-          <MyTweetList tweet={tweets}></MyTweetList>
+          <MyTweetList
+            tweet={tweets}
+            dynamicLoadReply={dynamicLoadReply}
+          ></MyTweetList>
         </div>
       ) : (
         <div>
-          <UserList users={users}></UserList>
-          <button onClick={onBack}>Back</button>
+          <div>
+          <UserList users={profileuser}></UserList>
+          <MyTweetList
+            tweet={users}
+            dynamicLoadReply={dynamicLoadReply}
+          />
+          </div>
+          <button onClick={onBack} className="small">
+            Back
+          </button>
         </div>
       )}
     </div>

@@ -10,6 +10,7 @@ function SidebarOption({ active, text, Icon, onChangeSidebarHandler }) {
       <Icon />
       <h2>
         <a onClick={onChangeSidebarOption}>{text}</a>
+        
       </h2>
     </div>
   );

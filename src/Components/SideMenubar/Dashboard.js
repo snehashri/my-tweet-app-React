@@ -1,7 +1,5 @@
 import React from "react";
 import "../CSS/styles.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../SideMenubar/Dashboard.css'
 
 import Navbar from "./Sidebar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -31,32 +29,15 @@ function registerHandler()
 }
 
   return (
-    // <div className="App">
+    <div className="App">
       
-    //   <Button variant = "outlined" className = "sidebar__tweet" onClick={loginHandler}>Login</Button>
-    //   <Button variant = "outlined" className = "sidebar__tweet" onClick={registerHandler}>Register</Button>
-    //   <Button variant = "outlined" className = "sidebar__tweet" onClick={forgetPassHandler}>Forget Password</Button>
-      
-    // </div>
-    <form>
-        <h3>Connect Today!</h3>
+      <Button variant = "outlined" className = "sidebar__tweet" onClick={loginHandler}>Login</Button>
+      <Button variant = "outlined" className = "sidebar__tweet" onClick={registerHandler}>Register</Button>
+      <Button variant = "outlined" className = "sidebar__tweet" onClick={forgetPassHandler}>Forget Password</Button>
         
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary" href="/sign-in">
-            Sign In
-          </button>
-        </div>
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary" href="/sign-up">
-            Sign Up
-          </button>
-        </div>
-        <p className="forgot-password text-right">
-         <a href="/forgotpass"> Forgot password?</a>
-        </p>
-      </form>
-
-  
+        
+      
+    </div>
   );
 }
 export default Dashboard;

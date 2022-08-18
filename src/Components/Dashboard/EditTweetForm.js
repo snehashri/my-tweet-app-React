@@ -5,6 +5,8 @@ import  { Modal,Button,Row,Col,Form } from 'react-bootstrap';
 function EditTweetForm(props) {
     var token=localStorage.getItem('token');
     var ID=props.tweetId;
+    var state=props.state;
+
 const[msg,setEnteredMsg]=useState("");
 
 const msgChangeHandler = (event) => {
@@ -12,14 +14,14 @@ const msgChangeHandler = (event) => {
   };
 
 
-function submitHandler(event)
+function handleSubmit(event)
 {
     event.preventDefault();
     const editedTweetmsg = {
         Message:msg
        };
-    EditTweetHandler(editedTweetmsg);
-    alert(event.target.message.value);
+   if (state == true) EditTweetHandler(editedTweetmsg);
+  alert(event.target.message.value);
     console.log(editedTweetmsg);
     
 }
@@ -38,6 +40,7 @@ async function EditTweetHandler(editedTweetmsg) {
     });
     const data = await response.json();
     console.log(data);
+   
   }
 
 return(
@@ -56,7 +59,7 @@ return(
       <div className='container'>
        <Row>
         <Col sm={6}>
-            <Form >
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="message">
                     <Form.Label>Tweet message</Form.Label>
                     <Form.Control
@@ -69,7 +72,7 @@ return(
                 </Form.Group>
                 <br></br>
                 <Form.Group>
-                    <Button varient="primary" type="submit" onSubmit={submitHandler}>
+                    <Button varient="primary" type="submit" >
                         Edit Tweet
                     </Button>
                 </Form.Group>

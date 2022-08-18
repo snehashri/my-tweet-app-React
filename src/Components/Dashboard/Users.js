@@ -5,46 +5,44 @@ import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import RepeatIcon from "@material-ui/icons/Repeat";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import React, { forwardRef } from "react";
-import "../CSS/Post.css";
+import "../CSS/userprofile.css";
 import DeleteTweet from "../Dashboard/DeleteTweet";
 
 const Users = forwardRef(
   (
     {
-      username,
-      verified,
-      FirstName,
-      image,
-      avatar,
-      key,
-      message,
+      username,  
       Email,
-      DeleteState,
-      tweetId,
+      firstname,
+      lastname,
+      profileimg
+      
     },
     ref
   ) => {
     return (
-      <div className="post" ref={ref}>
-        <div className="post__avatar">
+      <div className="user" ref={ref}>
+        {/* <div className="post__avatar">
           <Avatar src={avatar} />
+        </div> */}
+        <div className="user__first__img">
+          <img src={profileimg} alt="profile img" />
         </div>
-        <div className="post__body">
-          <div className="post__header">
-            <div className="post__headerText">
+        <div className="user__body">
+          <div className="user__header">
+            <div className="user__headerText">
               <h3>
-                {username}
-                <span className="post__headerSpecial">
-                  {verified && <VerifiedUserIcon className="post__badge" />}@
-                  {Email}
+              <strong>{firstname}&nbsp;{lastname}</strong>{ <VerifiedUserIcon className="user__badge" />}
+              <br></br>
+              <span className="user__headerSpecial">
+                @{username}
+                  
                 </span>
               </h3>
             </div>
-            <div className="post__headerDescription">
-              <p>{FirstName}</p>
-            </div>
+            
           </div>
-          <img src={image} alt="" />
+          {/* <img src={image} alt="" /> */}
         </div>
       </div>
     );

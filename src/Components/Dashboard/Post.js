@@ -13,17 +13,17 @@ import DeleteTweet from "../Dashboard/DeleteTweet";
 import LikeTweet from "../Dashboard/LikeTweet";
 import ReplyTweet from "../Dashboard/ReplyTweet";
 import EditTweet from "../Dashboard/EditTweet";
+import {FaRegCheckCircle} from "react-icons/fa";
 
 
 const Post = forwardRef(
   (
     {
-      displayName,
+      Imageurl,
+      profileimg,
+      firstname,
+      lastname,
       username,
-      verified,
-      text,
-      image,
-      avatar,
       key,
       message,
       Email,
@@ -32,27 +32,36 @@ const Post = forwardRef(
       tweetId,
       Likes,
       TweetReplies,
+      //For GetMyTweetsPage
+      dynamicLoadDelete,
+      dynamicLoadReply,
     },
     ref
   ) => {
     return (
       <div className="post" ref={ref}>
-        <div className="post__avatar">
-          <Avatar src={avatar} />
+        {/* <div className="post__avatar">
+          <Avatar src={profileimg} />
+        </div> */}
+        <div className="posts__first__img">
+          <img src={profileimg} alt="profile img" />
         </div>
         <div className="post__body">
           <div className="post__header">
             <div className="post__headerText">
               <h3>
-                {username}
-                <span className="post__headerSpecial">
-                  {verified && <VerifiedUserIcon className="post__badge" />}@
-                  {Email}
+              <strong>{firstname}&nbsp;{lastname}</strong>&nbsp;&nbsp;
+              <span className="post__headerSpecial">
+                  { <VerifiedUserIcon className="post__badge" />}@{username}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span>{AddedDate}</span>
                 </span>
               </h3>
             </div>
             <div className="post__headerDescription">
               <p>{message}</p>
+            </div>
+            <div className="postss__details__img">
+              <img src={Imageurl}  alt="post" />
             </div>
           </div>
 
@@ -60,14 +69,22 @@ const Post = forwardRef(
             <div className="column">
               <LikeTweet tweetId={tweetId} Likes={Likes}></LikeTweet>
             </div>
+            <input type="hidden" className="getTweetId" value={tweetId}></input>
             <ReplyTweet
               TweetReplies={TweetReplies}
               tweetId={tweetId}
+              //For dynamic load reply
+              dynamicLoadReply={dynamicLoadReply}
             ></ReplyTweet>
-
-            <DeleteTweet tweetId={tweetId} state={DeleteState} />
+            <div className="column middle">
+              <DeleteTweet
+                tweetId={tweetId}
+                state={DeleteState}
+                //Dynamic load delete
+                dynamicLoadDelete={dynamicLoadDelete}
+              />
+            </div>
             <EditTweet tweetId={tweetId} state={DeleteState} />
-           
           </div>
         </div>
       </div>

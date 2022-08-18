@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Avatar, Button } from "@material-ui/core";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import IconButton from "@material-ui/core/IconButton";
 import "../CSS/TweetBox.css";
 function PostTweetForm(props) {
   const [enteredmsg, setEnteredMessage] = useState("");
+  const [imageId, setImageId] = useState("");
   var token = localStorage.getItem("token");
 
   const msgChangeHandler = (event) => {
     setEnteredMessage(event.target.value);
+  };
+
+  const imageChangeHandler = (event) => {
+    setImageId(event.target.files[0].name);
   };
 
   const submitHandler = (event) => {
@@ -14,10 +21,12 @@ function PostTweetForm(props) {
     console.log(enteredmsg);
     const UserTweetMsgData = {
       Message: enteredmsg,
+      Imageurl:"/images/" +imageId
     };
     PostTweetHandler(UserTweetMsgData);
     console.log(UserTweetMsgData);
     props.afterPost();
+    document.getElementById("postTweetForm").reset();
   };
 
   async function PostTweetHandler(tweetmsgdata) {
@@ -37,16 +46,8 @@ function PostTweetForm(props) {
   }
 
   return (
-    // <form onSubmit={submitHandler}>
-    //   <div >
-    //     <label htmlFor='message'>Tweet Message</label>
-    //     <input type='text' id='message'  onChange={msgChangeHandler} />
-    //   </div>
-    //   <button>Post</button>
-
-    // </form>
     <div className="tweetBox">
-      <form>
+      <form id="postTweetForm">
         <div className="tweetBox__input">
           <Avatar />
           <input
@@ -55,7 +56,20 @@ function PostTweetForm(props) {
             id="message"
             type="text"
           />
-        </div>
+           </div>
+          <div className="fileupload">
+          
+          <input
+            onChange={imageChangeHandler}
+            type="file"
+            name="myfile"
+          />
+
+         
+          </div>
+          
+           
+       
         <Button onClick={submitHandler} className="tweetBox__tweetButton">
           Tweet
         </Button>

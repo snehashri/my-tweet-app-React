@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import  { Button, ButtonToolbar } from 'react-bootstrap';
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from '@mui/icons-material/Edit';
 import EditTweetForm from '../Dashboard/EditTweetForm';
 
 
 function EditTweet(props) {
     var token=localStorage.getItem('token');
     var tweetId=props.tweetId;
+   var state=props.state;
+
     const [addModalshow,setAddModalshow]=useState(false);
 
 function submithandler()
@@ -22,15 +26,25 @@ function addModalClose()
 return(
     <div>
     <ButtonToolbar>
+        {state == true &&
         <Button  varient="primary" onClick={submithandler}>Edit          
-        </Button>
+        </Button>}
 
         <EditTweetForm
+        state={state}
         tweetId={props.tweetId}
         show={addModalshow}
         onHide={addModalClose}
         />
     </ButtonToolbar>
+    {/* <IconButton onClick={submithandler}>
+     <EditIcon/>
+     <EditTweetForm
+        tweetId={props.tweetId}
+        show={addModalshow}
+        onHide={addModalClose}
+        />
+    </IconButton> */}
     </div>
  
 );

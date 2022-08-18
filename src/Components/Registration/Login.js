@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import '../CSS/Registerform.css';
+// import style from '../CSS/Registerform.css';
+import '../CSS/Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Login(props) {
   const navigate=useNavigate();
@@ -101,6 +102,7 @@ function Login(props) {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            required
           />
         </div>
         <div className="mb-3">
@@ -110,6 +112,7 @@ function Login(props) {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            required
           />
         </div>
         <div className="mb-3">

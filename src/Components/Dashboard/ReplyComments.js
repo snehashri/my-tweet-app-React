@@ -25,6 +25,10 @@ function ReplyComments(props) {
     postReplyHandler(TweetReplyData);
     console.log(TweetReplyData);
     props.afterPost();
+    console.log("event object", event);
+    console.log("event target object", event.target);
+    console.log("document", document.getElementsByClassName("getTweetId"));
+    document.getElementById("ReplyForm").reset();
   };
 
   async function postReplyHandler(tweetReplyData) {
@@ -39,7 +43,7 @@ function ReplyComments(props) {
   }
   return (
     <div className="tweetBox">
-      <form>
+      <form id="ReplyForm">
         <div className="tweetBox__input">
           <Avatar />
           <input

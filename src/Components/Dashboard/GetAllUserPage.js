@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import UsersList from "../Dashboard/UsersList";
 
@@ -22,18 +22,20 @@ function GetMyTweetsPage() {
         const allUsers = data.Data.map((user, index) => {
           return {
             key: index,
-            // firstName: user.firstName,
-            // email: user.Email,
-            firstName: user.FirstName,
-            lastName: user.LastName,
+            Email: user.Email,
+            firstname: user.FirstName,
+            lastname: user.LastName,
             username: user.Username,
+            profileimg:user.ProfileImg
           };
         });
         setUsers(allUsers);
         console.log("tt", allUsers);
       });
   }
-
+  useEffect(() => {
+    fetchAllUsersHandler();
+  }, []);
   return (
     <React.Fragment>
       <div className="feed">
@@ -41,7 +43,7 @@ function GetMyTweetsPage() {
           <h2>Users</h2>
         </div>
         <section>
-          <button onClick={fetchAllUsersHandler}>Get All Users</button>
+          {/* <button onClick={fetchAllUsersHandler}>Get All Users</button> */}
           <UsersList users={users} />
         </section>
       </div>

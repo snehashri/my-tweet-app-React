@@ -8,6 +8,7 @@ import Sidebar from "../SideMenubar/Sidebar";
 import Feed from "../Dashboard/Feed";
 import GetMyTweetsPage from "../Dashboard/GetMyTweetsPage";
 import GetAllUserPage from "../Dashboard/GetAllUserPage";
+import Trends from '../Dashboard/Trends';
 
 function HomePage() {
   const [nav, setNav] = useState("");
@@ -22,6 +23,9 @@ function HomePage() {
       {nav == "Get My Tweets" && <GetMyTweetsPage />}
       {nav == "Get All Users" && <GetAllUserPage />}
       {nav == "Search by username" && <GetMyTweetsPage />}
+
+      <Trends/>
+
     </div>
   );
 

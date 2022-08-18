@@ -18,8 +18,14 @@ function ReplyTweet(props) {
   const [result, setResult] = useState(false);
   const [like, setLike] = useState(false);
   const [afterPost, setAfterPost] = useState(false);
-  function submithandler() {
+
+  const [refresh, setRefresh] = useState([]);
+
+  //setDynamicList(props.TweetReplies);
+
+  function submithandler(event) {
     //likeTweetHandler();
+    event.preventDefault();
     setResult((s) => !s);
 
     //likesTest = !likesTest;
@@ -46,22 +52,29 @@ function ReplyTweet(props) {
             DeleteState: false,
             Likes: tweetData.Likes,
             TweetReplies: tweetData.TweetReplies,
+            // firstname:tweetData.user.FirstName,
+            // lastname:tweetData.user.LastName,
+            // username:tweetData.user.Username,
+            // profileimg:tweetData.user.ProfileImg
           };
         });
-
+       
         setReplyList(transformedMyTweets);
-        //console.log("tt", transformedMyTweets[0].Likes.length);
+        
       });
   }
 
   useEffect(() => {
-    console.log("Reply before -> ", replyList);
+    //console.log("Reply before -> ", props.TweetReplies);
     fetchMytweetsHandler();
-    console.log("Reply after -> ", replyList);
+    //setDynamicList(props.TweetReplies);
+    console.log("Reply after -> ", props.TweetReplies);
   }, [afterPost]);
 
   function afterPostHandle() {
     setAfterPost((s) => !s);
+    props.dynamicLoadReply();
+    //setDynamicList(props.TweetReplies);
   }
 
   return (
@@ -75,10 +88,10 @@ function ReplyTweet(props) {
             tweetId={tweetId}
             afterPost={afterPostHandle}
           ></ReplyComments>
-          {console.log("above ShowReply", replyList)}
           <ShowReply
             tweetId={props.tweetId}
-            TweetReplies={replyList}
+            TweetReplies={props.TweetReplies}
+            //TweetReplies={replyList}
           ></ShowReply>
         </div>
       )}

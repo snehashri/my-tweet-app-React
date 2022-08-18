@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PostTweetForm from './PostTweetForm';
 
 
+
 function PostTweetPage() {
     
 
@@ -16,6 +17,7 @@ function PostTweetPage() {
           }
         });
         const data = await response.json();
+        
         console.log(data);
       }
   

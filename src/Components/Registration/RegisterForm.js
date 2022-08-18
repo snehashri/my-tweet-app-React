@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
- import '../CSS/Registerform.css';
+//  import '../CSS/Registerform.css';
 
 
 function RegisterForm(props) {
@@ -8,16 +8,21 @@ function RegisterForm(props) {
   
     const [enteredFname, setEnteredFname] = useState('');
     const [enteredLname, setEnteredLname] = useState('');
+    const [enteredusername, setEnteredusername] = useState('');
     const [enteredGender, setEnteredGender] = useState('');
     const [enteredPhone, setEnteredPhone] = useState('');
     const [enteredDOB, setEnteredDOB] = useState('');
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPass, setEnteredPass] = useState('');
+    const [imageId, setImageId] = useState("");
     const firstnameChangeHandler = (event) => {
         setEnteredFname(event.target.value);   
       };
       const lastnameChangeHandler = (event) => {
         setEnteredLname(event.target.value);   
+      };
+      const usernameChangeHandler = (event) => {
+        setEnteredusername(event.target.value);   
       };
       const genderChangeHandler = (event) => {
         setEnteredGender(event.target.value);   
@@ -35,6 +40,9 @@ function RegisterForm(props) {
   const passChangeHandler = (event) => {
     setEnteredPass(event.target.value);
   };
+  const imageChangeHandler = (event) => {
+    setImageId(event.target.files[0].name);
+  };
 
   const submitHandler = (event) => {
     
@@ -43,11 +51,13 @@ function RegisterForm(props) {
     const registeredUserData = {
     FirstName:enteredFname,
     LastName:enteredLname,
+    Username:enteredusername,
     Gender:enteredGender,
     DOB:enteredDOB,
     Phone:enteredPhone,
     Email:enteredEmail,
-    password:enteredPass
+    password:enteredPass,
+    ProfileImg:"/images/" +imageId
     };
     userRegistrationHandler(registeredUserData);
     
@@ -92,6 +102,10 @@ function RegisterForm(props) {
           <label>Last name</label>
           <input type="text" className="form-control" placeholder="Last name" onChange={lastnameChangeHandler} />
         </div>
+        <div className="mb-3">
+          <label>User name</label>
+          <input type="text" className="form-control" placeholder="User name" onChange={usernameChangeHandler} />
+        </div>
         <div className="mb-3" onChange={genderChangeHandler}>
         <label>Gender</label><br></br>
         <input type="radio"  id="male" name="gender" value="male" />
@@ -105,7 +119,7 @@ function RegisterForm(props) {
         </div>
         <div className="mb-3">
           <label>Phone Number</label>
-          <input type="text" pattern="^[0-9]{10}$" placeholder="Phone number" minLength={10} maxLength={10} className="form-control"  onChange={DOBChangeHandler} />
+          <input type="text" pattern="^[0-9]{10}$" placeholder="Phone number" minLength={10} maxLength={10} className="form-control"  onChange={phoneChangeHandler} />
         </div>
         <div className="mb-3">
           <label>Email address</label>
@@ -125,8 +139,17 @@ function RegisterForm(props) {
             placeholder="Enter password"
           />
         </div>
+
+        <div className="mb-3">
+          <label>Upload Profile Photo</label>
+          <input
+            onChange={imageChangeHandler}
+            type="file"
+            name="myfile"
+          />
+        </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" onClick={submitHandler}>
             Sign Up
           </button>
         </div>

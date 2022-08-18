@@ -15,22 +15,33 @@ import ReplyTweet from "../Dashboard/ReplyTweet";
 
 const Reply = forwardRef(
   (
-    { username, verified, avatar, key, message, Email, AddedDate, tweetId },
+    { Imageurl,
+      profileimg,
+      firstname,
+      lastname,
+      username,
+      key,
+      message,
+      Email,
+      AddedDate, tweetId },
     ref
   ) => {
     return (
       <div className="post" ref={ref}>
-        <div className="post__avatar">
+        {/* <div className="post__avatar">
           <Avatar />
+        </div> */}
+        <div className="posts__first__img">
+          <img src={profileimg} alt="profile img" />
         </div>
         <div className="post__body">
           <div className="post__header">
             <div className="post__headerText">
               <h3>
-                {username}
+              <strong>{firstname}&nbsp;{lastname}</strong>&nbsp;&nbsp;
                 <span className="post__headerSpecial">
-                  {verified && <VerifiedUserIcon className="post__badge" />}@
-                  {Email}
+                { <VerifiedUserIcon className="post__badge" />}@{username}
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span>{AddedDate}</span>
                 </span>
               </h3>
             </div>

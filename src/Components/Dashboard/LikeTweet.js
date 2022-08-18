@@ -13,6 +13,15 @@ function LikeTweet(props) {
   var userId;
   const [result, setResult] = useState(false);
   const [like, setLike] = useState(false);
+
+  // if (
+  //   localStorage.getItem("userId") !== null ||
+  //   localStorage.getItem("userId") !== undefined ||
+  //   localStorage.getItem("userId") !== ""
+  // ) {
+  //   localStorage.removeItem("userId");
+  // }
+
   function submithandler() {
     likeTweetHandler();
     setResult((s) => !s);
@@ -31,7 +40,7 @@ function LikeTweet(props) {
       }
     );
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
   }
   async function getUserIdHandler() {
     const response = await fetch(
@@ -46,12 +55,19 @@ function LikeTweet(props) {
     const data = await response.json();
     localStorage.setItem("userId", data.Data);
     userId = localStorage.getItem("userId");
-
-    console.log(data.Data);
+    //console.log("userId->>>>>>>>>>", userId);
+    //setResult(likesList.some((user) => user.userId == userId));
+    //console.log("LikesList", likesList);
   }
 
   useEffect(() => {
     getUserIdHandler();
+    console.log("inside the useEffect likess list ", likesList);
+    console.log(
+      "(user.userId == userId)",
+      likesList.some((user) => user.UserId == userId)
+    );
+    console.log("userId->>>>>>>>>>", localStorage.getItem("userId"));
     setResult(likesList.some((user) => user.userId == userId));
   }, []);
   return (

@@ -41,4 +41,7 @@
     margin-left: auto !important;
     filter: opacity(0.8);
   }
-  
+  .fileupload
+  {
+    padding-left: 30px;
+  }
