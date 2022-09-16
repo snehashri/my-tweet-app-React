@@ -33,7 +33,7 @@ function ForgetPasswordForm(props) {
   };
 
   async function forgotPasswordHandler(forgotpasswordData) {
-    const response = await fetch('https://localhost:44359/api/Auth/ForgotPassword', {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/Auth/ForgotPassword`, {
       method: 'POST',
       body: JSON.stringify(forgotpasswordData),
       headers: {

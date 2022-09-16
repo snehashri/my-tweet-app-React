@@ -31,7 +31,7 @@ function ReplyTweet(props) {
     //likesTest = !likesTest;
   }
   async function fetchMytweetsHandler() {
-    fetch("https://localhost:44359/api/Tweet/GetAllTweets", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/GetAllTweets`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

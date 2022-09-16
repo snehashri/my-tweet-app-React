@@ -21,7 +21,7 @@ function Feed() {
 
   const [searchUsernameInput, setSearchUsernameInput] = useState("");
   async function fetchMytweetsHandler() {
-    fetch("https://localhost:44359/api/Tweet/GetAllTweets", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/GetAllTweets`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ function Feed() {
 
   async function fetchUsersHandler() {
     fetch(
-      `https://localhost:44359/api/Tweet/GetTweets/${searchUsernameInput}`,
+      `${process.env.REACT_APP_API_URL}/api/Tweet/GetTweets/${searchUsernameInput}`,
       {
         method: "GET",
         headers: {

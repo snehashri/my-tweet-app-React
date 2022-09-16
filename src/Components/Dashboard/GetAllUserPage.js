@@ -8,7 +8,7 @@ function GetMyTweetsPage() {
   var token = localStorage.getItem("token");
 
   async function fetchAllUsersHandler() {
-    fetch("https://localhost:44359/api/Tweet/GetAllUsers", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/GetAllUsers`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

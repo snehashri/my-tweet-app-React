@@ -6,11 +6,12 @@ function GetMyTweetsPage() {
   const [tweets, setMytweets] = useState([]);
   const [dynamicDelete, setDynamicDelete] = useState(false);
   const [dynamicReply, setDynamicReply] = useState(false);
+  const [dynamicEdit, setDynamicEdit] = useState(false);
   var State = true;
   var token = localStorage.getItem("token");
 
   async function fetchMytweetsHandler() {
-    fetch("https://localhost:44359/api/Tweet/GetAllTweetsofUser", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/GetAllTweetsofUser`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,15 +46,17 @@ function GetMyTweetsPage() {
   }
 
   function dynamicLoadDelete() {
-    setDynamicDelete((s) => !s);
+    setDynamicDelete((toLoad) => !toLoad);
   }
   function dynamicLoadReply() {
-    setDynamicReply((s) => !s);
+    setDynamicReply((toLoad) => !toLoad);
   }
-
+  function dynamicLoadEdit() {
+    setDynamicEdit((toLoad) => !toLoad);
+  }
   useEffect(() => {
     fetchMytweetsHandler();
-  }, [dynamicDelete, dynamicReply]);
+  }, [dynamicDelete, dynamicReply, dynamicEdit]);
   return (
     <React.Fragment>
       <div className="feed">
@@ -67,6 +70,7 @@ function GetMyTweetsPage() {
             // For Dynamic load after delete and reply
             dynamicLoadDelete={dynamicLoadDelete}
             dynamicLoadReply={dynamicLoadReply}
+            dynamicLoadEdit={dynamicLoadEdit}
           />
         </section>
       </div>

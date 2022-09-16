@@ -35,16 +35,10 @@ return(
         tweetId={props.tweetId}
         show={addModalshow}
         onHide={addModalClose}
+        dynamicLoadEdit={props.dynamicLoadEdit}
         />
     </ButtonToolbar>
-    {/* <IconButton onClick={submithandler}>
-     <EditIcon/>
-     <EditTweetForm
-        tweetId={props.tweetId}
-        show={addModalshow}
-        onHide={addModalClose}
-        />
-    </IconButton> */}
+    
     </div>
  
 );

@@ -31,7 +31,7 @@ function LikeTweet(props) {
 
   async function likeTweetHandler() {
     const response = await fetch(
-      `https://localhost:44359/api/Tweet/like/${ID}`,
+      `${process.env.REACT_APP_API_URL}/api/Tweet/like/${ID}`,
       {
         method: "PUT",
         headers: {
@@ -44,7 +44,7 @@ function LikeTweet(props) {
   }
   async function getUserIdHandler() {
     const response = await fetch(
-      `https://localhost:44359/api/Tweet/GetIdFromToken`,
+      `${process.env.REACT_APP_API_URL}/api/Tweet/GetIdFromToken`,
       {
         method: "GET",
         headers: {

@@ -21,7 +21,7 @@ function handleSubmit(event)
         Message:msg
        };
    if (state == true) EditTweetHandler(editedTweetmsg);
-  alert(event.target.message.value);
+  // alert(event.target.message.value);
     console.log(editedTweetmsg);
     
 }
@@ -29,17 +29,18 @@ function handleSubmit(event)
 
 async function EditTweetHandler(editedTweetmsg) {
     
-    const response = await fetch(`https://localhost:44359/api/Tweet/update/${ID}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/update/${ID}`, {
       method: 'PUT',
       body: JSON.stringify(editedTweetmsg),
       headers: {
         Authorization:`Bearer ${token}`,
         "Content-Type": "application/json",
     },
-  
-    });
-    const data = await response.json();
-    console.log(data);
+  }).then(() => {
+    props.dynamicLoadEdit();
+  });
+    // const data = await response.json();
+    // console.log(data);
    
   }
 

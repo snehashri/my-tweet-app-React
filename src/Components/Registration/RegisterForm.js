@@ -66,7 +66,7 @@ function RegisterForm(props) {
   };
 
   async function userRegistrationHandler(registereduserdata) {
-    const response = await fetch('https://localhost:44359/api/Auth/Register', {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/Auth/Register`, {
       method: 'POST',
       body: JSON.stringify(registereduserdata),
       headers: {
@@ -74,7 +74,7 @@ function RegisterForm(props) {
       }
     });
     const data = await response.json();
-    
+    alert(data.Message);
     console.log(data);
   }
 

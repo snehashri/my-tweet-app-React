@@ -35,7 +35,8 @@ const Users = forwardRef(
               <strong>{firstname}&nbsp;{lastname}</strong>{ <VerifiedUserIcon className="user__badge" />}
               <br></br>
               <span className="user__headerSpecial">
-                @{username}
+                @{username}<br></br>
+                {Email}
                   
                 </span>
               </h3>

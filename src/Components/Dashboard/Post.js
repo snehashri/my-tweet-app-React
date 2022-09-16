@@ -35,6 +35,7 @@ const Post = forwardRef(
       //For GetMyTweetsPage
       dynamicLoadDelete,
       dynamicLoadReply,
+      dynamicLoadEdit,
     },
     ref
   ) => {
@@ -60,9 +61,13 @@ const Post = forwardRef(
             <div className="post__headerDescription">
               <p>{message}</p>
             </div>
+            {Imageurl !="/images/" && (
             <div className="postss__details__img">
-              <img src={Imageurl}  alt="post" />
-            </div>
+            <img src={Imageurl}  alt="post" />
+            </div>)
+
+            }
+            
           </div>
 
           <div className="post__footer">
@@ -84,7 +89,10 @@ const Post = forwardRef(
                 dynamicLoadDelete={dynamicLoadDelete}
               />
             </div>
-            <EditTweet tweetId={tweetId} state={DeleteState} />
+            <EditTweet tweetId={tweetId} 
+            state={DeleteState}
+            dynamicLoadEdit={dynamicLoadEdit} 
+            />
           </div>
         </div>
       </div>

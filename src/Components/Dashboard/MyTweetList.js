@@ -32,6 +32,7 @@ function MyTweetList(props) {
             // For GetMyTweetsPage refresh
             dynamicLoadDelete={props.dynamicLoadDelete}
             dynamicLoadReply={props.dynamicLoadReply}
+            dynamicLoadEdit={props.dynamicLoadEdit}
           />
         ))
       ) : (

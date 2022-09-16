@@ -31,7 +31,7 @@ function PostTweetForm(props) {
 
   async function PostTweetHandler(tweetmsgdata) {
     const response = await fetch(
-      "https://localhost:44359/api/Tweet/PostTweet",
+      `${process.env.REACT_APP_API_URL}/api/Tweet/PostTweet`,
       {
         method: "POST",
         body: JSON.stringify(tweetmsgdata),
@@ -52,7 +52,7 @@ function PostTweetForm(props) {
           <Avatar />
           <input
             onChange={msgChangeHandler}
-            placeholder="What's happening"
+            placeholder="Say Something"
             id="message"
             type="text"
           />

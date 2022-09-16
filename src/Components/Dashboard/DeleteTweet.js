@@ -12,16 +12,19 @@ function DeleteTweet(props) {
 
   async function deleteTweetHandler() {
     const response = await fetch(
-      `https://localhost:44359/api/Tweet/delete/${ID}`,
+      `${process.env.REACT_APP_API_URL}/api/Tweet/delete/${ID}`,
       {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+        }).then((response) => {
+          props.dynamicLoadDelete();
+          console.log("delete", response);
+          return response;
+        });
+    // const data = await response.json();
+    // console.log(data);
   }
 
   return (

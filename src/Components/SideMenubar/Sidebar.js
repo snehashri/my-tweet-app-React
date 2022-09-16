@@ -5,18 +5,16 @@ import SidebarOption from "./SlidebarOption";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import MailOutlineIcon from "@material-ui/icons/MailOutlineOutlined";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import ListAltIcon from "@material-ui/icons/ListAlt";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 
 function Sidebar(props) {
   var navigate = useNavigate();
   function backHandler() {
     navigate("/", { replace: true });
+    localStorage.removeItem("userId");
   }
   function onChangeSidebarHandler(goto) {
     props.changeNav(goto);
@@ -33,22 +31,16 @@ function Sidebar(props) {
       />
       <SidebarOption
         Icon={SearchIcon}
-        text="Get My Tweets"
+        text="My Tweets"
         onChangeSidebarHandler={onChangeSidebarHandler}
-        //   navigate="/getmytweetspage"
+       
       />
       <SidebarOption
-        Icon={NotificationsNoneIcon}
-        text="Get All Users"
+        Icon={PersonSearchIcon}
+        text="All Users"
         onChangeSidebarHandler={onChangeSidebarHandler}
-        //   navigate="/getmytweets"
+       
       />
-      {/* <SidebarOption
-        Icon={MailOutlineIcon}
-        text="Search by username"
-        onChangeSidebarHandler={onChangeSidebarHandler}
-        //   navigate="/getmytweets"
-      /> */}
       <Button
         variant="outlined"
         className="sidebar__tweet"

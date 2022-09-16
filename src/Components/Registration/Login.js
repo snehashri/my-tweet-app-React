@@ -33,7 +33,7 @@ function Login(props) {
 
 
   async function userloginHandler(loginuserdata) {
-    const response = await fetch('https://localhost:44359/api/Auth/Login', {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/Auth/Login`, {
       method: 'POST',
       body: JSON.stringify(loginuserdata),
       headers: {
@@ -41,7 +41,8 @@ function Login(props) {
       }
     });
     const data = await response.json();
-    console.log(data.Data);
+    alert(data.Message);
+    console.log(data);
     console.log("beforeset: ",sessionStorage.getItem('token'));
     localStorage.setItem('token', data.Data);
     localStorage.setItem('user', loginuserdata);
@@ -50,7 +51,7 @@ function Login(props) {
    console.log(typeof(mytoken));
     if(localStorage.getItem('token') === 'null')
     {
-       navigate('/login',{replace: true});
+       navigate('/sign-in',{replace: true});
        //console.log("failed");
       
     }
@@ -70,30 +71,11 @@ function Login(props) {
   
 
   return (
-    // <div className="login-wrapper">
-    // <h1>Please Log In</h1>
     
-    //  <form onSubmit={submitHandler} >
-    //     <div>
-    //     <label htmlFor='email'>Email</label>
-    //     <input type='email' id='email'  onChange={emailChangeHandler} />
-    //     </div>
-    //     <div>
-    //     <label htmlFor='password'>Password</label>
-    //     <input type='password' id='password' onChange={passChangeHandler} ></input>
-    //     </div>
-    //  <div>
-    //   <button>Login</button>
-    //   </div>
-    //   <div>
-    //   <button onClick={backHandler}>Back</button>
-    //   </div>
-    // </form>   
-    // </div>
     <div className="App">
     <div className="auth-wrapper">
     <div className="auth-inner">
-    <form >
+    <form onSubmit={submitHandler}>
         <h3>Sign into your account</h3>
         <div className="mb-3">
           <label>Email address</label>
@@ -128,16 +110,17 @@ function Login(props) {
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" onClick={submitHandler}>
+          <button type="submit" className="btn btn-primary" >
             LOGIN
           </button>
         </div>
+        </form>
         <p className="forgot-password text-right">
          <a href="/forgotpass"> Forgot password?</a>
         </p>
         <br></br>
         <p><h6>Don't have an account?  <a href="/sign-up"> Register here</a></h6></p>
-      </form>
+     
       </div></div>
       </div>
       

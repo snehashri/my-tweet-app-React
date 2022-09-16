@@ -32,7 +32,7 @@ function ReplyComments(props) {
   };
 
   async function postReplyHandler(tweetReplyData) {
-    fetch(`https://localhost:44359/api/Tweet/reply/${ID}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/reply/${ID}`, {
       method: "POST",
       body: JSON.stringify(tweetReplyData),
       headers: {
@@ -48,7 +48,7 @@ function ReplyComments(props) {
           <Avatar />
           <input
             onChange={msgChangeHandler}
-            placeholder="What's happening"
+            placeholder="Say Something"
             id="message"
             type="text"
           />

@@ -9,8 +9,7 @@ function SidebarOption({ active, text, Icon, onChangeSidebarHandler }) {
     <div className={`sidebarOption ${active && "sidebarOption--active"}`}>
       <Icon />
       <h2>
-        <a onClick={onChangeSidebarOption}>{text}</a>
-        
+        <a onClick={onChangeSidebarOption}>{text}</a>        
       </h2>
     </div>
   );

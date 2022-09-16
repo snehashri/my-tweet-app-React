@@ -9,7 +9,7 @@ function PostTweetPage() {
       
 
     async function PostTweetHandler(tweetmsgdata) {
-        const response = await fetch('https://localhost:44359/api/Tweet/PostTweet', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/Tweet/PostTweet`, {
           method: 'POST',
           body: JSON.stringify(tweetmsgdata),
           headers: {
